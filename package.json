@@ -1,6 +1,7 @@
 {
   "name": "wdio-cucumber-framework",
   "version": "0.1.0",
+  "private": true,
   "description": "A WebdriverIO plugin. Adapter for Cucumber testing framework.",
   "main": "build/adapter.js",
   "scripts": {
@@ -11,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webdriverio/wdio-cucumber-framework.git"
+    "url": "git+ssh://github.com/arif49/wdio-cucumber-framework.git"
   },
   "keywords": [
     "cucumber",
@@ -24,9 +25,9 @@
   "author": "Christian Bromann <christian@saucelabs.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/webdriverio/wdio-cucumber-framework/issues"
+    "url": "https://github.com/arif49/wdio-cucumber-framework/issues"
   },
-  "homepage": "https://github.com/webdriverio/wdio-cucumber-framework#readme",
+  "homepage": "https://github.com/arif49/wdio-cucumber-framework#readme",
   "dependencies": {
     "wdio-sync": "0.5.2",
     "babel-runtime": "^5.8.25"
