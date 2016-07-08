@@ -112,7 +112,7 @@ var CucumberReporter = (function () {
     _createClass(CucumberReporter, [{
         key: 'handleBeforeFeatureEvent',
         value: function handleBeforeFeatureEvent(event, callback) {
-            var feature = event.getPayloadItem('feature');
+            var feature = event.getUri ? event : event.getPayloadItem('feature');
             this.featureStart = new Date();
             this.runningFeature = feature;
 
@@ -129,7 +129,7 @@ var CucumberReporter = (function () {
     }, {
         key: 'handleBeforeScenarioEvent',
         value: function handleBeforeScenarioEvent(event, callback) {
-            var scenario = event.getPayloadItem('scenario');
+            var scenario = event.getUri ? event : event.getPayloadItem('scenario');
             this.runningScenario = scenario;
             this.scenarioStart = new Date();
             this.testStart = new Date();
@@ -148,7 +148,7 @@ var CucumberReporter = (function () {
     }, {
         key: 'handleBeforeStepEvent',
         value: function handleBeforeStepEvent(event, callback) {
-            var step = event.getPayloadItem('step');
+            var step = event.getUri ? event : event.getPayloadItem('step');
             this.testStart = new Date();
 
             this.emit('test:start', {
@@ -165,7 +165,7 @@ var CucumberReporter = (function () {
     }, {
         key: 'handleStepResultEvent',
         value: function handleStepResultEvent(event, callback) {
-            var stepResult = event.getPayloadItem('stepResult');
+            var stepResult = event.getStep ? event : event.getPayloadItem('stepResult');
             var step = stepResult.getStep();
             var e = 'undefined';
 
@@ -239,8 +239,7 @@ var CucumberReporter = (function () {
     }, {
         key: 'handleAfterScenarioEvent',
         value: function handleAfterScenarioEvent(event, callback) {
-            var scenario = event.getPayloadItem('scenario');
-
+            var scenario = event.getUri ? event : event.getPayloadItem('scenario');
             this.emit('suite:end', {
                 title: scenario.getName(),
                 description: scenario.getDescription(),
@@ -256,8 +255,7 @@ var CucumberReporter = (function () {
     }, {
         key: 'handleAfterFeatureEvent',
         value: function handleAfterFeatureEvent(event, callback) {
-            var feature = event.getPayloadItem('feature');
-
+            var feature = event.getUri ? event : event.getPayloadItem('feature');
             this.emit('suite:end', {
                 title: feature.getName(),
                 description: feature.getDescription(),

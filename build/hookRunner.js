@@ -111,43 +111,115 @@ var HookRunner = (function () {
         }
     }, {
         key: 'handleBeforeFeatureEvent',
-        value: function handleBeforeFeatureEvent(e, done) {
-            return executeHooksWithArgs(this.beforeFeature, [e.getPayloadItem('feature')]).then(done, function (e) {
+        value: function handleBeforeFeatureEvent(event) {
+            var feature = event.getUri ? event : event.getPayloadItem('feature');
+            var exec = executeHooksWithArgs(this.beforeFeature, [feature]);
+            var done = arguments[1];
+            if (done.length === 0) {
+                exec.then(function (res) {
+                    if (typeof done === 'function') {
+                        done(res);
+                    }
+                    return res;
+                });
+            }
+
+            return exec['catch'](function (e) {
                 console.error('beforeFeature has thrown an error: ' + e);
             });
         }
     }, {
         key: 'handleBeforeScenarioEvent',
-        value: function handleBeforeScenarioEvent(e, done) {
-            return executeHooksWithArgs(this.beforeScenario, [e.getPayloadItem('scenario')]).then(done, function (e) {
+        value: function handleBeforeScenarioEvent(event) {
+            var scenario = event.getUri ? event : event.getPayloadItem('scenario');
+            var done = arguments[1];
+            var exec = executeHooksWithArgs(this.beforeScenario, [scenario]);
+            if (done.length === 0) {
+                exec.then(function (res) {
+                    if (typeof done === 'function') {
+                        done(res);
+                    }
+                    return res;
+                });
+            }
+
+            return exec['catch'](function (e) {
                 console.error('beforeScenario has thrown an error: ' + e);
             });
         }
     }, {
         key: 'handleBeforeStepEvent',
-        value: function handleBeforeStepEvent(e, done) {
-            return executeHooksWithArgs(this.beforeStep, [e.getPayloadItem('step')]).then(done, function (e) {
+        value: function handleBeforeStepEvent(event) {
+            var step = event.getUri ? event : event.getPayloadItem('step');
+            var done = arguments[1];
+            var exec = executeHooksWithArgs(this.beforeStep, [step]);
+            if (done.length === 0) {
+                exec.then(function (res) {
+                    if (typeof done === 'function') {
+                        done(res);
+                    }
+                    return res;
+                });
+            }
+
+            return exec['catch'](function (e) {
                 console.error('beforeStep has thrown an error: ' + e);
             });
         }
     }, {
         key: 'handleStepResultEvent',
-        value: function handleStepResultEvent(e, done) {
-            return executeHooksWithArgs(this.afterStep, [e.getPayloadItem('stepResult')]).then(done, function (e) {
+        value: function handleStepResultEvent(event) {
+            var stepResult = event.getStep ? event : event.getPayloadItem('stepResult');
+            var done = arguments[1];
+            var exec = executeHooksWithArgs(this.afterStep, [stepResult]);
+            if (done.length === 0) {
+                exec.then(function (res) {
+                    if (typeof done === 'function') {
+                        done(res);
+                    }
+                    return res;
+                });
+            }
+
+            return exec['catch'](function (e) {
                 console.error('afterStep has thrown an error: ' + e);
             });
         }
     }, {
         key: 'handleAfterScenarioEvent',
-        value: function handleAfterScenarioEvent(e, done) {
-            return executeHooksWithArgs(this.afterScenario, [e.getPayloadItem('scenario')]).then(done, function (e) {
+        value: function handleAfterScenarioEvent(event) {
+            var scenario = event.getUri ? event : event.getPayloadItem('scenario');
+            var done = arguments[1];
+            var exec = executeHooksWithArgs(this.afterScenario, [scenario]);
+            if (done.length === 0) {
+                exec.then(function (res) {
+                    if (typeof done === 'function') {
+                        done(res);
+                    }
+                    return res;
+                });
+            }
+
+            return exec['catch'](function (e) {
                 console.error('afterScenario has thrown an error: ' + e);
             });
         }
     }, {
         key: 'handleAfterFeatureEvent',
-        value: function handleAfterFeatureEvent(e, done) {
-            return executeHooksWithArgs(this.afterFeature, [e.getPayloadItem('feature')]).then(done, function (e) {
+        value: function handleAfterFeatureEvent(event) {
+            var feature = event.getUri ? event : event.getPayloadItem('feature');
+            var done = arguments[1];
+            var exec = executeHooksWithArgs(this.afterFeature, [feature]);
+            if (done.length === 0) {
+                exec.then(function (res) {
+                    if (typeof done === 'function') {
+                        done(res);
+                    }
+                    return res;
+                });
+            }
+
+            return exec['catch'](function (e) {
                 console.error('afterFeature has thrown an error: ' + e);
             });
         }

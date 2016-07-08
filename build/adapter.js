@@ -225,7 +225,7 @@ var CucumberAdapter = (function () {
         this.cucumberOpts = _Object$assign(DEFAULT_OPTS, config.cucumberOpts);
 
         this.origStepDefinition = Cucumber.SupportCode.StepDefinition;
-        this.origAstTreeWalker = Cucumber.Runtime.AstTreeWalker;
+        this.origLibrary = Cucumber.SupportCode.Library;
     }
 
     _createClass(CucumberAdapter, [{
@@ -248,7 +248,7 @@ var CucumberAdapter = (function () {
                         runtime = Cucumber.Runtime(cucumberConf);
 
                         Cucumber.SupportCode.StepDefinition = this.getStepDefinition();
-                        Cucumber.Runtime.AstTreeWalker = this.getAstTreeWalker();
+                        Cucumber.SupportCode.Library = this.getLibrary();
 
                         reporter = new CucumberReporter(Cucumber.Listener(), reporterOptions, this.cid, this.specs);
 
@@ -267,7 +267,7 @@ var CucumberAdapter = (function () {
                             runtime.start(function () {
                                 resolve(reporter.failedCount);
                                 Cucumber.SupportCode.StepDefinition = _this.origStepDefinition;
-                                Cucumber.Runtime.AstTreeWalker = _this.origAstTreeWalker;
+                                Cucumber.SupportCode.Library = _this.origLibrary;
                             });
                         }));
 
@@ -310,18 +310,19 @@ var CucumberAdapter = (function () {
         }
 
         /**
-         * overwrites Cucumbers AstTreeWalker class to set default timeout for cucumber steps
+         * overwrites Cucumbers Library class to set default timeout for cucumber steps and hooks
          */
     }, {
-        key: 'getAstTreeWalker',
-        value: function getAstTreeWalker() {
+        key: 'getLibrary',
+        value: function getLibrary() {
             var _this3 = this;
 
-            var origAstTreeWalker = this.origAstTreeWalker;
+            var origLibrary = this.origLibrary;
 
-            return function (features, supportCodeLibrary, listeners, options) {
-                supportCodeLibrary.setDefaultTimeout(_this3.cucumberOpts.timeout);
-                return origAstTreeWalker(features, supportCodeLibrary, listeners, options);
+            return function (supportCodeDefinition) {
+                var library = origLibrary(supportCodeDefinition);
+                library.setDefaultTimeout(_this3.cucumberOpts.timeout);
+                return library;
             };
         }
 
