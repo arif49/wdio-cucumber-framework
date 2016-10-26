@@ -1,37 +1,105 @@
 {
-  "name": "wdio-cucumber-framework",
-  "version": "0.2.6",
-  "private": true,
-  "description": "A WebdriverIO plugin. Adapter for Cucumber testing framework.",
-  "main": "build/adapter.js",
-  "scripts": {
-    "build": "grunt",
-    "test": "grunt mocha_istanbul",
-    "prepublish": "npm prune && npm run build",
-    "dev": "mocha --watch -r should -t 50000 --compilers js:babel/register test/*.spec.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://github.com/arif49/wdio-cucumber-framework.git"
-  },
-  "keywords": [
-    "cucumber",
-    "BDD",
-    "webdriverio",
-    "wdio",
-    "wdio-plugin",
-    "wdio-framework"
+  "_args": [
+    [
+      {
+        "raw": "wdio-cucumber-framework@~0.2.5",
+        "scope": null,
+        "escapedName": "wdio-cucumber-framework",
+        "name": "wdio-cucumber-framework",
+        "rawSpec": "~0.2.5",
+        "spec": ">=0.2.5 <0.3.0",
+        "type": "range"
+      },
+      "/Users/ariful.islam/Workspace/git/ui-auto"
+    ]
   ],
-  "author": "Christian Bromann <christian@saucelabs.com>",
-  "license": "MIT",
+  "_from": "wdio-cucumber-framework@>=0.2.5 <0.3.0",
+  "_id": "wdio-cucumber-framework@0.2.5",
+  "_inCache": true,
+  "_location": "/wdio-cucumber-framework",
+  "_nodeVersion": "5.10.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/wdio-cucumber-framework-0.2.5.tgz_1473429147081_0.6845586383715272"
+  },
+  "_npmUser": {
+    "name": "christian-bromann",
+    "email": "contact@christian-bromann.com"
+  },
+  "_npmVersion": "3.8.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "wdio-cucumber-framework@~0.2.5",
+    "scope": null,
+    "escapedName": "wdio-cucumber-framework",
+    "name": "wdio-cucumber-framework",
+    "rawSpec": "~0.2.5",
+    "spec": ">=0.2.5 <0.3.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/wdio-cucumber-framework/-/wdio-cucumber-framework-0.2.5.tgz",
+  "_shasum": "4f23943e0b12ab060fbb76799fca3d1aed58f6ea",
+  "_shrinkwrap": null,
+  "_spec": "wdio-cucumber-framework@~0.2.5",
+  "_where": "/Users/ariful.islam/Workspace/git/ui-auto",
+  "author": {
+    "name": "Christian Bromann",
+    "email": "christian@saucelabs.com"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "plugins": [
+          "rewire"
+        ]
+      }
+    }
+  },
   "bugs": {
-    "url": "https://github.com/arif49/wdio-cucumber-framework/issues"
+    "url": "https://github.com/webdriverio/wdio-cucumber-framework/issues"
   },
-  "homepage": "https://github.com/arif49/wdio-cucumber-framework#readme",
+  "contributors": [
+    {
+      "name": "Christian Bromann",
+      "email": "github@christian-bromann.com"
+    },
+    {
+      "name": "Attila Beregszaszi",
+      "email": "attila@frontseed.com"
+    },
+    {
+      "name": "Tim Brust",
+      "email": "tim.brust@sinnerschrader.com"
+    },
+    {
+      "name": "helderroem",
+      "email": "helderroem@users.noreply.github.com"
+    },
+    {
+      "name": "xGhOsTkiLLeRx",
+      "email": "ratchet.player@gmx.de"
+    },
+    {
+      "name": "ukasz Żak",
+      "email": "zlukasz.poczta@gmail.com"
+    },
+    {
+      "name": "Sameer Balasubrahmanyam",
+      "email": "bs.sameer1@gmail.com"
+    },
+    {
+      "name": "Tim Brust",
+      "email": "ratchet.player@gmx.de"
+    }
+  ],
   "dependencies": {
-    "wdio-sync": "0.5.15",
-    "babel-runtime": "^5.8.25"
+    "babel-runtime": "^5.8.25",
+    "wdio-sync": "0.5.15"
   },
+  "description": "A WebdriverIO plugin. Adapter for Cucumber testing framework.",
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.23",
@@ -58,24 +126,44 @@
     "should": "^7.1.0",
     "sinon": "^1.17.1"
   },
+  "directories": {},
+  "dist": {
+    "shasum": "4f23943e0b12ab060fbb76799fca3d1aed58f6ea",
+    "tarball": "https://registry.npmjs.org/wdio-cucumber-framework/-/wdio-cucumber-framework-0.2.5.tgz"
+  },
+  "gitHead": "004a1a25a2eae80788dd8ee50fc03abe171a42d3",
+  "homepage": "https://github.com/webdriverio/wdio-cucumber-framework#readme",
+  "keywords": [
+    "cucumber",
+    "BDD",
+    "webdriverio",
+    "wdio",
+    "wdio-plugin",
+    "wdio-framework"
+  ],
+  "license": "MIT",
+  "main": "build/adapter.js",
+  "maintainers": [
+    {
+      "name": "christian-bromann",
+      "email": "contact@christian-bromann.com"
+    }
+  ],
+  "name": "wdio-cucumber-framework",
+  "optionalDependencies": {},
   "peerDependencies": {
     "cucumber": "~1.2.0"
   },
-  "babel": {
-    "env": {
-      "test": {
-        "plugins": [
-          "rewire"
-        ]
-      }
-    }
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webdriverio/wdio-cucumber-framework.git"
   },
-  "contributors": [
-    "Christian Bromann <github@christian-bromann.com>",
-    "Attila Beregszaszi <attila@frontseed.com>",
-    "Tim Brust <ratchet.player@gmx.de>",
-    "helderroem <helderroem@users.noreply.github.com>",
-    "xGhOsTkiLLeRx <ratchet.player@gmx.de>",
-    "ukasz Żak <zlukasz.poczta@gmail.com>"
-  ]
+  "scripts": {
+    "build": "grunt",
+    "dev": "mocha --watch -r should -t 50000 --compilers js:babel/register test/*.spec.js",
+    "prepublish": "npm prune && npm run build",
+    "test": "grunt mocha_istanbul"
+  },
+  "version": "0.2.5"
 }
