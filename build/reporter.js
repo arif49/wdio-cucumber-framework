@@ -179,6 +179,7 @@ var CucumberReporter = (function () {
                     break;
                 case Cucumber.Status.PENDING:
                 case Cucumber.Status.SKIPPED:
+                case Cucumber.Status.AMBIGUOUS:
                     e = 'pending';
             }
             var error = {};
@@ -222,6 +223,15 @@ var CucumberReporter = (function () {
                     stack: err.stack
                 };
                 this.failedCount++;
+            } else if (stepResult.getStatus() === Cucumber.Status.AMBIGUOUS && this.options.failAmbiguousDefinitions) {
+                e = 'fail';
+                this.failedCount++;
+                error = {
+                    message: 'Step "' + stepTitle + '" is ambiguous. The following steps matched the step definition',
+                    stack: stepResult.getAmbiguousStepDefinitions().map(function (step) {
+                        return step.getPattern().toString() + ' in ' + step.getUri() + ':' + step.getLine();
+                    }).join('\n')
+                };
             }
 
             this.emit('test:' + e, {

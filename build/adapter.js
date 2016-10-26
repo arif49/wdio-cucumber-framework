@@ -191,9 +191,9 @@ var DEFAULT_OPTS = {
     profile: [], // <string> (name) specify the profile to use
     require: [], // <string> (file/dir) require files before executing features
     snippetSyntax: undefined, // <string> specify a custom snippet syntax
-    strict: false, // fail if there are any undefined or pending steps
+    strict: false, // <boolean> fail if there are any undefined or pending steps
     tags: [], // <string[]> (expression) only execute the features or scenarios with tags matching the expression
-    timeout: DEFAULT_TIMEOUT // timeout for step definitions
+    timeout: DEFAULT_TIMEOUT // <number> timeout for step definitions in milliseconds
 };
 
 /**
@@ -239,7 +239,8 @@ var CucumberAdapter = (function () {
                     case 0:
                         reporterOptions = {
                             capabilities: this.capabilities,
-                            ignoreUndefinedDefinitions: !!this.cucumberOpts.ignoreUndefinedDefinitions
+                            ignoreUndefinedDefinitions: Boolean(this.cucumberOpts.ignoreUndefinedDefinitions),
+                            failAmbiguousDefinitions: Boolean(this.cucumberOpts.failAmbiguousDefinitions)
                         };
 
                         wrapCommands(global.browser, this.config.beforeCommand, this.config.afterCommand);
@@ -345,7 +346,9 @@ var CucumberAdapter = (function () {
                 }
 
                 return new _Promise(function (resolve, reject) {
-                    return global.wdioSync(executeSync.bind(_this4, code, resolve, reject, retryTest, args)).apply(_this4);
+                    return global.wdioSync(executeSync.bind(_this4, code, retryTest, args), function (resultPromise) {
+                        return resultPromise.then(resolve, reject);
+                    }).apply(_this4);
                 });
             };
         }

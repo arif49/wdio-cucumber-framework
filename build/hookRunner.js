@@ -124,8 +124,8 @@ var HookRunner = (function () {
                 });
             }
 
-            return exec['catch'](function (e) {
-                console.error('beforeFeature has thrown an error: ' + e);
+            return exec.then(function () {
+                return done();
             });
         }
     }, {
@@ -143,8 +143,8 @@ var HookRunner = (function () {
                 });
             }
 
-            return exec['catch'](function (e) {
-                console.error('beforeScenario has thrown an error: ' + e);
+            return exec['catch'](function () {
+                return done();
             });
         }
     }, {
@@ -162,8 +162,8 @@ var HookRunner = (function () {
                 });
             }
 
-            return exec['catch'](function (e) {
-                console.error('beforeStep has thrown an error: ' + e);
+            return exec['catch'](function () {
+                return done();
             });
         }
     }, {
@@ -181,8 +181,8 @@ var HookRunner = (function () {
                 });
             }
 
-            return exec['catch'](function (e) {
-                console.error('afterStep has thrown an error: ' + e);
+            return exec['catch'](function () {
+                return done();
             });
         }
     }, {
@@ -200,8 +200,8 @@ var HookRunner = (function () {
                 });
             }
 
-            return exec['catch'](function (e) {
-                console.error('afterScenario has thrown an error: ' + e);
+            return exec['catch'](function () {
+                return done();
             });
         }
     }, {
@@ -219,8 +219,8 @@ var HookRunner = (function () {
                 });
             }
 
-            return exec['catch'](function (e) {
-                console.error('afterFeature has thrown an error: ' + e);
+            return exec['catch'](function () {
+                return done();
             });
         }
     }]);
