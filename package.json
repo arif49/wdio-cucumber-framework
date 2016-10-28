@@ -97,7 +97,7 @@
   ],
   "dependencies": {
     "babel-runtime": "^5.8.25",
-    "wdio-sync": "0.5.15"
+    "wdio-sync": "0.5.16"
   },
   "description": "A WebdriverIO plugin. Adapter for Cucumber testing framework.",
   "devDependencies": {
